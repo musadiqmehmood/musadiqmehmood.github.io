@@ -1,14 +1,56 @@
 (() => {
+  const root = document.documentElement;
   const nav = document.getElementById("nav");
   const menuToggle = document.getElementById("menuToggle");
   const navLinks = document.getElementById("navLinks");
+  const themeToggle = document.getElementById("themeToggle");
+  const metaTheme = document.getElementById("metaThemeColor");
   const year = document.getElementById("year");
+  const heroFrame = document.querySelector(".hero-frame");
+  const sectionIds = ["about", "systems", "experience", "skills", "contact"];
 
   if (year) year.textContent = String(new Date().getFullYear());
+
+  const getTheme = () => root.getAttribute("data-theme") || "dark";
+
+  const applyTheme = (theme) => {
+    root.setAttribute("data-theme", theme);
+    try {
+      localStorage.setItem("mm-theme", theme);
+    } catch (_) {}
+    if (metaTheme) metaTheme.setAttribute("content", theme === "light" ? "#f4f2ec" : "#0b0c0d");
+    if (themeToggle) {
+      themeToggle.setAttribute(
+        "aria-label",
+        theme === "light" ? "Switch to dark mode" : "Switch to light mode"
+      );
+    }
+  };
+
+  applyTheme(getTheme());
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      applyTheme(getTheme() === "dark" ? "light" : "dark");
+    });
+  }
 
   const onScroll = () => {
     if (!nav) return;
     nav.classList.toggle("is-scrolled", window.scrollY > 12);
+
+    const fromTop = window.scrollY + 120;
+    let current = null;
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el && el.offsetTop <= fromTop) current = id;
+    });
+    if (navLinks) {
+      navLinks.querySelectorAll('a[href^="#"]').forEach((link) => {
+        const href = link.getAttribute("href");
+        link.classList.toggle("is-active", href === `#${current}`);
+      });
+    }
   };
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
@@ -30,23 +72,73 @@
   }
 
   const reveals = document.querySelectorAll(".reveal");
-  if ("IntersectionObserver" in window) {
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (!reduceMotion && "IntersectionObserver" in window) {
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            io.unobserve(entry.target);
-          }
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          io.unobserve(entry.target);
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" }
+      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
     );
     reveals.forEach((el, i) => {
-      el.style.transitionDelay = `${Math.min(i % 6, 4) * 60}ms`;
+      if (!el.closest(".hero-copy") && !el.classList.contains("hero-visual")) {
+        el.style.transitionDelay = `${Math.min(i % 7, 5) * 55}ms`;
+      }
       io.observe(el);
     });
   } else {
     reveals.forEach((el) => el.classList.add("is-visible"));
+  }
+
+  /* Subtle 3D tilt on portrait */
+  if (heroFrame && !reduceMotion && window.matchMedia("(pointer: fine)").matches) {
+    const visual = heroFrame.parentElement;
+    visual.addEventListener("pointermove", (e) => {
+      const rect = heroFrame.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      heroFrame.style.transform = `rotateY(${x * 8}deg) rotateX(${-y * 6}deg) translateY(-4px)`;
+    });
+    visual.addEventListener("pointerleave", () => {
+      heroFrame.style.transform = "";
+    });
+  }
+
+  /* Count-up for stats when visible */
+  const stats = document.querySelectorAll(".stat-number");
+  if (!reduceMotion && stats.length && "IntersectionObserver" in window) {
+    const animateCount = (el) => {
+      const raw = el.textContent.trim();
+      const match = raw.match(/^(\d+)(\+?)$/);
+      if (!match) return;
+      const target = Number(match[1]);
+      const suffix = match[2] || "";
+      const duration = 900;
+      const start = performance.now();
+      const step = (now) => {
+        const t = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - t, 3);
+        el.textContent = `${Math.round(target * eased)}${suffix}`;
+        if (t < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+
+    const sio = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          animateCount(entry.target);
+          sio.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.6 }
+    );
+    stats.forEach((el) => sio.observe(el));
   }
 })();
