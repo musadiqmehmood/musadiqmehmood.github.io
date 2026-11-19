@@ -667,27 +667,32 @@ html[data-theme="light"] .theme-toggle .icon-sun { display: block; }
   display: grid;
   gap: 2rem;
 }
-.contact-main {
-  max-width: 40rem;
+.contact-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) auto;
+  gap: 1.5rem 2.5rem;
+  align-items: end;
 }
+.contact-main { min-width: 0; }
 .contact-title {
   max-width: 14ch;
   margin-bottom: 0.9rem;
 }
 .contact-copy {
   color: var(--muted);
-  margin-bottom: 1.4rem;
-  max-width: 42ch;
+  margin-bottom: 0;
+  max-width: 44ch;
 }
 .contact-cta {
   display: flex;
   flex-wrap: wrap;
   gap: 0.7rem;
+  justify-content: flex-end;
 }
 .contact-links {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1.25rem 1.5rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.15rem 2rem;
   padding-top: 1.5rem;
   border-top: 1px solid var(--line);
 }
@@ -695,7 +700,10 @@ html[data-theme="light"] .theme-toggle .icon-sun { display: block; }
   display: grid;
   gap: 0.35rem;
   min-width: 0;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--line);
 }
+.contact-links li:nth-last-child(-n+2) { border-bottom: 0; padding-bottom: 0; }
 .contact-link-label {
   font-family: var(--font-mono);
   font-size: 0.66rem;
@@ -705,10 +713,9 @@ html[data-theme="light"] .theme-toggle .icon-sun { display: block; }
 }
 .contact-links a {
   color: var(--heading);
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 600;
   line-height: 1.35;
-  word-break: break-word;
 }
 .contact-links a:hover { color: var(--accent); }
 
@@ -774,8 +781,9 @@ html[data-theme="light"] .theme-toggle .icon-sun { display: block; }
   .tools-grid { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: 1fr 1fr; gap: 1.25rem 1rem; }
   .hero { padding: 4.75rem 0 3rem; }
-  .hero-facts,
-  .contact-links { grid-template-columns: 1fr 1fr; }
+  .hero-facts { grid-template-columns: 1fr 1fr; }
+  .contact-top { grid-template-columns: 1fr; align-items: start; }
+  .contact-cta { justify-content: flex-start; }
   .hero-role { max-width: none; }
   .section { padding: 3.75rem 0; }
   .contact { padding-bottom: 3.75rem; }
@@ -790,6 +798,11 @@ html[data-theme="light"] .theme-toggle .icon-sun { display: block; }
   .system { grid-template-columns: 1fr; gap: 0.4rem; }
   .hero-cta .btn,
   .contact-cta .btn { width: 100%; }
+  .contact-links { grid-template-columns: 1fr; }
+  .contact-links li { border-bottom: 1px solid var(--line); padding: 0.85rem 0; }
+  .contact-links li:last-child { border-bottom: 0; padding-bottom: 0; }
+  .contact-links li:nth-last-child(-n+2) { border-bottom: 1px solid var(--line); padding-bottom: 0.85rem; }
+  .contact-links li:last-child { border-bottom: 0; padding-bottom: 0; }
   .section-title { max-width: none; }
 }
 
