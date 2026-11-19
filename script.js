@@ -6,7 +6,6 @@
   const themeToggle = document.getElementById("themeToggle");
   const metaTheme = document.getElementById("metaThemeColor");
   const year = document.getElementById("year");
-  const heroFrame = document.querySelector(".hero-frame");
   const sectionIds = ["about", "services", "experience", "skills", "contact"];
 
   if (year) year.textContent = String(new Date().getFullYear());
@@ -97,20 +96,6 @@
     reveals.forEach((el) => el.classList.add("is-visible"));
   }
 
-  /* Subtle 3D tilt on portrait */
-  if (heroFrame && !reduceMotion && window.matchMedia("(pointer: fine)").matches) {
-    const visual = heroFrame.parentElement;
-    visual.addEventListener("pointermove", (e) => {
-      const rect = heroFrame.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      heroFrame.style.transform = `rotateY(${x * 8}deg) rotateX(${-y * 6}deg) translateY(-4px)`;
-    });
-    visual.addEventListener("pointerleave", () => {
-      heroFrame.style.transform = "";
-    });
-  }
-
   /* Count-up for stats when visible */
   const stats = document.querySelectorAll(".stat-number");
   if (!reduceMotion && stats.length && "IntersectionObserver" in window) {
@@ -120,7 +105,7 @@
       if (!match) return;
       const target = Number(match[1]);
       const suffix = match[2] || "";
-      const duration = 900;
+      const duration = target >= 100 ? 1200 : 900;
       const start = performance.now();
       const step = (now) => {
         const t = Math.min(1, (now - start) / duration);
