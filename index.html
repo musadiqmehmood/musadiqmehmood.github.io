@@ -85,10 +85,9 @@
         <a href="#experience">Experience</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
-        <a class="nav-resume" href="https://musadiqmehmood.com/" target="_blank" rel="noopener">Full site</a>
       </nav>
       <div class="nav-actions">
-        <button class="icon-btn" id="themeToggle" type="button" aria-label="Switch to light mode">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode">
           <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
             <path d="M21 14.5A8.5 8.5 0 1 1 9.5 3 7 7 0 0 0 21 14.5z" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -96,7 +95,9 @@
             <circle cx="12" cy="12" r="4"/>
             <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" stroke-linecap="round"/>
           </svg>
+          <span class="theme-toggle-label" id="themeLabel">Light</span>
         </button>
+        <a class="nav-resume" href="https://musadiqmehmood.com/" target="_blank" rel="noopener">Full site</a>
         <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
           <span></span><span></span>
         </button>
@@ -387,21 +388,43 @@
     </section>
 
     <section id="contact" class="section contact">
-      <div class="container contact-inner">
-        <p class="section-eyebrow reveal">Contact</p>
-        <h2 class="section-title reveal">Available for senior engineering work</h2>
-        <p class="contact-copy reveal">
-          WordPress architecture, Laravel/Vue operational platforms, or full-stack and AI-integrated
-          systems. I reply as an engineer — with a stack and a boundary, not a pitch deck.
-        </p>
-        <a class="contact-email reveal" href="mailto:musadiqmehmood012@gmail.com">musadiqmehmood012@gmail.com</a>
-        <ul class="contact-list reveal">
-          <li><a href="https://linkedin.com/in/musadiqmehmood" target="_blank" rel="noopener">linkedin.com/in/musadiqmehmood</a></li>
-          <li><a href="https://github.com/musadiqmehmood" target="_blank" rel="noopener">github.com/musadiqmehmood</a></li>
-          <li><a href="https://musadiqmehmood.com/" target="_blank" rel="noopener">musadiqmehmood.com</a></li>
-          <li><a href="https://wa.me/923030759014" target="_blank" rel="noopener">+92-303-075-9014</a></li>
-          <li>Multan, Pakistan · UTC+5</li>
-        </ul>
+      <div class="container">
+        <div class="contact-panel reveal">
+          <div class="contact-copy-col">
+            <p class="section-eyebrow">Contact</p>
+            <h2 class="section-title contact-title">Available for senior engineering work</h2>
+            <p class="contact-copy">
+              WordPress architecture, Laravel/Vue platforms, or full-stack and AI-integrated systems.
+              Reply with a stack and a boundary — not a pitch deck.
+            </p>
+            <div class="contact-cta">
+              <a class="btn btn-primary" href="mailto:musadiqmehmood012@gmail.com">Email me</a>
+              <a class="btn btn-ghost" href="https://wa.me/923030759014" target="_blank" rel="noopener">WhatsApp</a>
+            </div>
+          </div>
+          <div class="contact-channels">
+            <a class="channel" href="mailto:musadiqmehmood012@gmail.com">
+              <span class="channel-label">Email</span>
+              <span class="channel-value">musadiqmehmood012@gmail.com</span>
+            </a>
+            <a class="channel" href="https://linkedin.com/in/musadiqmehmood" target="_blank" rel="noopener">
+              <span class="channel-label">LinkedIn</span>
+              <span class="channel-value">in/musadiqmehmood</span>
+            </a>
+            <a class="channel" href="https://github.com/musadiqmehmood" target="_blank" rel="noopener">
+              <span class="channel-label">GitHub</span>
+              <span class="channel-value">github.com/musadiqmehmood</span>
+            </a>
+            <a class="channel" href="https://musadiqmehmood.com/" target="_blank" rel="noopener">
+              <span class="channel-label">Practice site</span>
+              <span class="channel-value">musadiqmehmood.com</span>
+            </a>
+            <div class="channel">
+              <span class="channel-label">Based</span>
+              <span class="channel-value">Multan, Pakistan · UTC+5</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>

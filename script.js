@@ -25,6 +25,8 @@
         theme === "light" ? "Switch to dark mode" : "Switch to light mode"
       );
     }
+    const themeLabel = document.getElementById("themeLabel");
+    if (themeLabel) themeLabel.textContent = theme === "light" ? "Dark" : "Light";
   };
 
   applyTheme(getTheme());
