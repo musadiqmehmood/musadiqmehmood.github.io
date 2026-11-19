@@ -84,14 +84,29 @@
           io.unobserve(entry.target);
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+      { threshold: 0.1, rootMargin: "0px 0px -6% 0px" }
     );
-    reveals.forEach((el, i) => {
-      if (!el.closest(".hero-copy") && !el.classList.contains("hero-visual")) {
-        el.style.transitionDelay = `${Math.min(i % 7, 5) * 55}ms`;
-      }
-      io.observe(el);
+
+    const heroReveals = document.querySelectorAll(".hero-inner > .reveal");
+    heroReveals.forEach((el, i) => {
+      el.style.transitionDelay = `${40 + i * 70}ms`;
     });
+
+    const groups = [
+      ".stats-grid > .reveal",
+      ".systems-list > .reveal",
+      ".timeline > .reveal",
+      ".tools-grid > .reveal",
+      ".about-layout .reveal",
+      ".contact-inner > .reveal"
+    ];
+    groups.forEach((selector) => {
+      document.querySelectorAll(selector).forEach((el, i) => {
+        el.style.transitionDelay = `${Math.min(i, 6) * 70}ms`;
+      });
+    });
+
+    reveals.forEach((el) => io.observe(el));
   } else {
     reveals.forEach((el) => el.classList.add("is-visible"));
   }
