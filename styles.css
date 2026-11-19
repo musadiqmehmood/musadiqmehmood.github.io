@@ -584,7 +584,7 @@ html[data-theme="light"] .theme-toggle .icon-sun { display: block; }
 /* ---------- Tools ---------- */
 .tools-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.15rem;
 }
 .tool-card {
@@ -750,8 +750,8 @@ html[data-theme="light"] .theme-toggle .icon-sun { display: block; }
     letter-spacing: 0;
     font-size: 0.95rem;
   }
-  .about-layout,
-  .tools-grid { grid-template-columns: 1fr; }
+  .about-layout { grid-template-columns: 1fr; }
+  .tools-grid { grid-template-columns: 1fr 1fr; }
   .stats-grid { grid-template-columns: 1fr 1fr; }
   .stat:nth-child(2n) { border-right: 0; }
   .stat:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
@@ -775,6 +775,7 @@ html[data-theme="light"] .theme-toggle .icon-sun { display: block; }
   .hero-cta .btn,
   .contact-cta .btn { width: 100%; }
   .contact-links { grid-template-columns: 1fr; gap: 1.1rem; }
+  .tools-grid { grid-template-columns: 1fr; }
   .section-title { max-width: none; }
 }
 
