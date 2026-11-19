@@ -7,7 +7,7 @@
   const metaTheme = document.getElementById("metaThemeColor");
   const year = document.getElementById("year");
   const heroFrame = document.querySelector(".hero-frame");
-  const sectionIds = ["about", "systems", "experience", "skills", "contact"];
+  const sectionIds = ["about", "services", "experience", "skills", "contact"];
 
   if (year) year.textContent = String(new Date().getFullYear());
 
