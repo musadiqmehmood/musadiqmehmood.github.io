@@ -10,12 +10,12 @@
 
   if (year) year.textContent = String(new Date().getFullYear());
 
-  const getTheme = () => root.getAttribute("data-theme") || "dark";
+  const getTheme = () => root.getAttribute("data-theme") || "light";
 
   const applyTheme = (theme) => {
     root.setAttribute("data-theme", theme);
     try {
-      localStorage.setItem("mm-theme", theme);
+      localStorage.setItem("mm-theme-v2", theme);
     } catch (_) {}
     if (metaTheme) metaTheme.setAttribute("content", theme === "light" ? "#f4f2ec" : "#0b0c0d");
     if (themeToggle) {

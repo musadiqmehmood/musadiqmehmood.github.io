@@ -6,18 +6,18 @@
   <meta name="description" content="Muhammad Musadiq Mehmood — Software Architect & Senior Full-Stack Engineer. Currently building Flask/Next.js and Laravel/Vue systems; also leads WordPress delivery.">
   <meta name="author" content="Muhammad Musadiq Mehmood">
   <meta name="robots" content="index, follow, max-image-preview:large">
-  <meta name="theme-color" content="#0b0c0d" id="metaThemeColor">
+  <meta name="theme-color" content="#f4f2ec" id="metaThemeColor">
   <title>Muhammad Musadiq Mehmood — Software Architect</title>
   <link rel="canonical" href="https://musadiqmehmood.github.io/">
   <script>
     (function () {
       try {
-        var saved = localStorage.getItem("mm-theme");
-        var theme = saved || (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+        var saved = localStorage.getItem("mm-theme-v2");
+        var theme = saved === "dark" || saved === "light" ? saved : "light";
         document.documentElement.setAttribute("data-theme", theme);
         document.documentElement.classList.add("page-enter");
       } catch (e) {
-        document.documentElement.setAttribute("data-theme", "dark");
+        document.documentElement.setAttribute("data-theme", "light");
       }
     })();
   </script>
@@ -69,7 +69,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <link rel="stylesheet" href="styles.css?v=20261119tools">
+  <link rel="stylesheet" href="styles.css?v=20261119light">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -463,6 +463,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=20261119qa"></script>
+  <script src="script.js?v=20261119light"></script>
 </body>
 </html>
